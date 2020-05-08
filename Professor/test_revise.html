@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="Final.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="Final.html"> 시험 목록 </a></li>
+      <li><a href="testcreate.html"> 시험 생성하기 </a></li>
+      <li><a href="testdetail_1.html"> 시험 상세 </a></li>
+      <li><a href="test_revise_1.html"> 시험 수정 </a></li>
+    </ul>
+  </nav>
+  <section>
+
+      <script>
+      /*시험 수정 메뉴 > 목록 > 수정을 클릭했을 때 나오는 페이지*/
+      function clickAlert(){
+        alert("수정이 완료되었습니다");
+      }
+      </script>
+      <div id="createtest">
+        <form>
+          <fieldset>
+            <legend>문제 수정</legend>
+            시험명 <input type = "text" name="name"><br/>
+            응시기간 <input type = "date" name"date"><br>
+            응시시간 <select>
+              <option value="1">1시간</option>
+              <option value="2">2시간</option>
+              <option value="3">3시간</option>
+              <option value="4">4시간</option>
+            </select><br>
+
+            <input type="radio" name="auto" value="auto"> 자동
+            <input type="radio" name="auto" value="manual"> 수동<br>
+            문제번호 <input type = "text" name="score"><br>
+            문제배점 <input type = "text" name="score"><br>
+            문제정답 <input type = "text" name="answer"><br>
+            문제수정<br><textarea name="problem" rows="5" cols="50"></textarea><br>
+            응시자 <input type = "text" name="student"><br><br>
+            <input type = "submit" value="수정 완료" onclick = "clickAlert()"><br>
+          </fieldset>
+        </form>
+      </div>
+
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+</body>
+
+</html>

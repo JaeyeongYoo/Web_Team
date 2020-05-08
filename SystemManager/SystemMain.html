@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="SystemMain.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1> MENU </h1>
+      <li><a href="user.html"> 이용자 정보 </a></li>
+      <li><a href="test.html"> 시험 정보 </a></li>
+    </ul>
+  </nav>
+  <section>
+    관리자 페이지입니다
+
+    <p id="alarm">교수자 등록 신청 ??건</p>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+  <script>
+    var request = 0;
+    var write = document.getElementById("alarm");
+    write.innerHTML = "<b>교수자 등록 신청 "+request+"건</b>";
+  </script>
+</body>
+
+</html>

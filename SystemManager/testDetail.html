@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="SystemMain.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="user.html"> 이용자 정보 </a></li>
+      <li><a href="test.html"> 시험 정보 </a></li>
+    </ul>
+  </nav>
+  <section>
+    <legend>시험 상세 정보</legend>
+    <div align="center">
+      <table>
+        <tr>
+          <th>항목</th>
+          <th>값</th>
+        </tr>
+        <tr>
+          <td><p>시험명</p></td>
+          <td><p id="testName"> </p> </td>
+        </tr>
+        <tr>
+          <td><p>생성자명</p></td>
+          <td><p id="crName"> </p> </td>
+        </tr>
+        <tr>
+          <td><p>생성시간</p></td>
+          <td><p id="crDate"></p> </td>
+        </tr>
+        <tr>
+          <td><p>응시시간</p></td>
+          <td><p id="testDate"> </p> </td>
+        </tr>
+        <tr>
+          <td><p>응시기간</p></td>
+          <td><p id="time"> </p> </td>
+        </tr>
+        <tr>
+          <td><p>전체평균</p></td>
+          <td><p id="average"> </p> </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <th><p>번호</p></th>
+          <th><p>문항</p></th>
+          <th><p>배점</p></th>
+          <th><p>정답</p></th>
+        </tr>
+        <tr>
+          <td><p id="num1"></p></td>
+          <td><p id="quest1"></p></td>
+          <td><p id="score1"></p></td>
+          <td><p id="answer1"></p></td>
+        </tr>
+        <tr>
+          <td><p id="num2"></p></td>
+          <td><p id="quest2"></p></td>
+          <td><p id="score2"></p></td>
+          <td><p id="answer2"></p></td>
+        </tr>
+      </table>
+      <img src="https://icon-library.net/images/triangle-icon-png/triangle-icon-png-19.jpg" width="50px" height="50px" onclick=examNumberDown()>
+      <img src="https://icon-library.net/images/triangle-icon/triangle-icon-11.jpg" width="50px" height="50px" onclick=examNumberUp()><br>
+      <br>
+      <hr color="#fac60e">
+      <br>
+      <legend>응시자 정보</legend>
+      <p id="data"></p>
+      <table>
+        <tr>
+          <th><p>번호</p></th>
+          <th><p>응시자명</p></th>
+          <th><p>응시여부</p></th>
+          <th><p>상세</p></th>
+        </tr>
+        <tr>
+          <td><p id="number1"></p></td>
+          <td><p id="student1"></p></td>
+          <td><p id="tf1"></p></td>
+          <td><a href="studentDetail.html">상세 보기</a></td>
+        </tr>
+        <tr>
+          <td><p id="number2"></p></td>
+          <td><p id="student2"></p></td>
+          <td><p id="tf2"></p></td>
+          <td><a href="studentDetail.html">상세 보기</a></td>
+        </tr>
+      </table>
+    </div>
+    <img src="https://icon-library.net/images/triangle-icon-png/triangle-icon-png-19.jpg" width="50px" height="50px" onclick=studentNumberDown()>
+    <img src="https://icon-library.net/images/triangle-icon/triangle-icon-11.jpg" width="50px" height="50px" onclick=studentNumberUp()>
+    <br><br><br>
+    <a href="test.html">뒤로가기</a>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+  <script>
+    function TestData(testName, crName, crDate, testDate, time, average){//시험정보 객체
+      this.testName = testName;
+      this.crName = crName;
+      this.crDate = crDate;
+      this.testDate = testDate;
+      this.time = time;
+      this.average = average;
+    }
+    function Quiz(quest, score, answer){//문제 객체
+      this.quest = quest;
+      this.score = score;
+      this.answer = answer;
+    }
+    function Student(name, tf){//응시자 정보 객체
+      this.name = name;
+      this.tf = tf;
+    }
+    var examIndex = 0, studentIndex = 0;
+
+    dataOfTest = new TestData("test1", "Kim", "2019-11-28", "2019-12-07", 2, 77.2);//테스트용 데이터 삭제해도 무방
+    exam = new Array();
+    exam[0] = new Quiz("question0", 10, "answer0");
+    exam[1] = new Quiz("question1", 10, "answer1");
+    exam[2] = new Quiz("question2", 15, "answer2");
+    exam[3] = new Quiz("question3", 10, "answer3");
+    exam[4] = new Quiz("question4", 10, "answer4");
+    exam[5] = new Quiz("question5", 15, "answer5");
+    exam[6] = new Quiz("question6", 15, "answer6");
+    exam[7] = new Quiz("question7", 15, "answer7");
+
+    studentData = new Array();
+    studentData[0] = new Student("Oh", false);
+    studentData[1] = new Student("Park", true);
+    studentData[2] = new Student("Kim", true);
+    studentData[3] = new Student("Josh", false);
+    studentData[4] = new Student("Lee", true);
+    studentData[5] = new Student("Ham", true);
+    studentData[6] = new Student("Hur", true);
+    studentData[7] = new Student("Jang", true);
+    studentData[8] = new Student("Kim", false);
+    studentData[9] = new Student("Yoo", true);
+    studentData[10] = new Student("Kang", true);//여기까지 테스트용 데이터
+
+    function plotTestDetail(){
+      var toWrite;
+      toWrite = document.getElementById("testName");
+      toWrite.innerHTML = "<p>"+dataOfTest.testName+"</p>";
+      toWrite = document.getElementById("crName");
+      toWrite.innerHTML = "<p>"+dataOfTest.crName+"</p>";
+      toWrite = document.getElementById("crDate");
+      toWrite.innerHTML = "<p>"+dataOfTest.crDate+"</p>";
+      toWrite = document.getElementById("testDate");
+      toWrite.innerHTML = "<p>"+dataOfTest.testDate+"</p>";
+      toWrite = document.getElementById("time");
+      toWrite.innerHTML = "<p>"+dataOfTest.time+"</p>";
+      toWrite = document.getElementById("average");
+      toWrite.innerHTML = "<p>"+dataOfTest.average+"</p>";
+    }
+    function plotExam(examIndex){
+      var toWrite;
+      index = parseInt(examIndex);
+      for(var i = 1; i<=2; i++){
+        if(i>exam.length){//문항 수가 2보다 적을 경우
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+index)+"</p>";
+          toWrite = document.getElementById("quest"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("score"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("answer"+i);
+          toWrite.innerHTML = "<p> </p>";
+        } else {
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+index)+"</p>";
+          toWrite = document.getElementById("quest"+i);
+          toWrite.innerHTML = "<p>"+exam[i-1+index].quest+"</p>";
+          toWrite = document.getElementById("score"+i);
+          toWrite.innerHTML = "<p>"+exam[i-1+index].score+"</p>";
+          toWrite = document.getElementById("answer"+i);
+          toWrite.innerHTML = "<p>"+exam[i-1+index].answer+"</p>";
+        }
+      }
+    }
+    function plotStudent(studentIndex){
+      var toWrite;
+      index = parseInt(studentIndex);
+      for(var i = 1; i<=2; i++){
+        if(i>studentData.length){//학생 수가 2보다 적을 경우
+          toWrite = document.getElementById("number"+i);
+          toWrite.innerHTML = "<p>"+(i+index)+"</p>";
+          toWrite = document.getElementById("name"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("tf"+i);
+          toWrite.innerHTML = "<p> </p>";
+        } else {
+          toWrite = document.getElementById("number"+i);
+          toWrite.innerHTML = "<p>"+(i+index)+"</p>";
+          toWrite = document.getElementById("student"+i);
+          toWrite.innerHTML = "<p>"+studentData[i-1+index].name+"</p>";
+          toWrite = document.getElementById("tf"+i);
+          if(studentData[i-1+index].tf){
+            toWrite.innerHTML = "<p>응시</p>";
+          } else{
+            toWrite.innerHTML = "<p>미응시</p>";
+          }
+
+        }
+      }
+    }
+    function examNumberUp(){//사용자 정보 번호 1증가
+      if(examIndex<exam.length-2){
+        examIndex++;
+        plotExam(examIndex);
+      }
+    }
+    function examNumberDown(){//사용자 정보 번호 1 감소
+      if(examIndex>0){
+        examIndex--;
+        plotExam(examIndex);
+      }
+    }
+    function studentNumberUp(){//사용자 정보 번호 1증가
+      if(studentIndex<studentData.length-2){
+        studentIndex++;
+        plotStudent(studentIndex);
+      }
+    }
+    function studentNumberDown(){//사용자 정보 번호 1 감소
+      if(studentIndex>0){
+        studentIndex--;
+        plotStudent(studentIndex);
+      }
+    }
+
+    plotTestDetail();
+    plotExam(0);
+    plotStudent(0);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+
+</head>
+<body>
+  <header>
+    <a href="Final.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="Final.html"> 시험 목록 </a></li>
+      <li><a href="testcreate.html"> 시험 생성하기 </a></li>
+      <li><a href="testdetail_1.html"> 시험 상세 </a></li>
+      <li><a href="test_revise_1.html"> 시험 수정 </a></li>
+    </ul>
+  </nav>
+
+  <section id="createtest">
+        <fieldset>
+          <legend>문제 등록</legend>
+          시험명 <input type = "text" name="name"><br/>
+          응시기간 <input type = "date" name"date"><br>
+          응시시간 <select>
+            <option value="1">1시간</option>
+            <option value="2">2시간</option>
+            <option value="3">3시간</option>
+            <option value="4">4시간</option>
+          </select><br>
+
+          <input type="radio" name="auto" value="auto"> 자동채점
+          <input type="radio" name="auto" value="manual"> 수동채점<br>
+          문제 배점 <input type = "text" name="score"><br>
+          문제 정답 <input type = "text" name="answer"><br>
+          <input type="radio" name="probtype" value="auto"> 주관식 &nbsp;
+          <input id = "multiple" type="radio" name="probtype" value="manual"> 객관식
+          <select id = "select">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button id = "button" onclick = "multipleProb()">선택지 생성</button>
+          <br>
+          문제등록<br><textarea id="txtArea" name="problem" rows="15" cols="50">1번 문제 : </textarea><br>
+          <!--문제 작성 완료 click >> 문제번호 증가-->
+          <input type = "submit" onclick ="probNumPlus()" value="문제 작성 완료"><br><br>
+
+          <!--학생 리스트에 있는 사람들만 볼 수 있도록 권한. 구현 x-->
+          응시자  <select>
+            <option value="one">stud1</option>
+            <option value="two">stud2</option>
+            <option value="three">stud3</option>
+            <option value="four">stud4</option>
+          </select><br><br>
+          <input type = "submit" onclick = "complete()" value="시험 생성 완료">
+        </fieldset>
+
+
+      <script>
+      function complete(){
+        alert("시험 생성이 완료되었습니다");
+      }
+      function listing(){
+        //객관식 선택지의 옵션 값을 받아서 multipleProb 안에서 사용됨.
+        var num = 0;
+        var accu = '';
+        num = document.getElementById("select").value;
+        for(var i = 1;i<=num; i++){
+          accu += (i + ")\n");
+
+        }
+        return accu;
+      }
+      function multipleProb(){
+        var backup=0;
+        if(document.getElementById("multiple").checked ==true){
+          backup = document.getElementById("txtArea").value;
+          document.getElementById("txtArea").innerHTML= backup + "\n\n"+listing();
+
+        }
+
+
+      }
+
+      //문제  작성 완료하면 다음 문제 작성할 수 있도록 세팅
+      var probNum = 2;
+      function probNumPlus(){
+        document.getElementById("txtArea").innerHTML = probNum+"번 문제 : ";
+        probNum++;
+
+      }
+
+      </script>
+
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+</body>
+
+</html>

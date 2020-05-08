@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="Final.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="Final.html"> 시험 목록 </a></li>
+      <li><a href="testcreate.html"> 시험 생성하기 </a></li>
+      <li><a href="testdetail_1.html"> 시험 상세 </a></li>
+      <li><a href="test_revise_1.html"> 시험 수정 </a></li>
+    </ul>
+  </nav>
+  <section>
+<table id="list">
+  <tr class="table">
+    <th>이름</th>
+    <th>응시자</th>
+    <th>미응시자</th>
+    <th>성적</th>
+    <th>채점</th>
+  </tr>
+
+  <tr>
+    <td>Nicole</td>
+    <td>O</td>
+    <td></td>
+    <td>*</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>Ophelie</td>
+    <td></td>
+    <td>O</td>
+    <td>*</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Ophelie</td>
+    <td>O</td>
+    <td></td>
+    <td>*</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>Ophelie</td>
+    <td></td>
+    <td>O</td>
+    <td>*</td>
+    <td></td>
+  </tr>
+</table>
+<script>
+//시험을 응시한 학생들은 시험지를 로드해서 채점
+    function grading(){
+      var length = document.getElementById("list").rows.length;
+      for(var i = 1; i<length;i++){
+            var x = document.getElementById("list").rows[i].cells[1].innerHTML;
+
+            if(x == 'O'){
+              document.getElementById("list").rows[i].cells[4].innerHTML = "<span><a href = 'grading.html'>시작</a></span>";
+
+            }
+      }
+    }
+    grading();
+</script>
+</section>
+
+<footer> Copyright (c) 2019 Webprogramming </footer>
+</body>
+
+</html>

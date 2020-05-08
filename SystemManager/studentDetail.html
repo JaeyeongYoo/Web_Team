@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="SystemMain.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1> MENU </h1>
+      <li><a href="user.html"> 이용자 정보 </a></li>
+      <li><a href="test.html"> 시험 정보 </a></li>
+    </ul>
+  </nav>
+  <section>
+    <legend>응시 상세정보</legend>
+    <p id="student"></p>
+    <div align="center">
+      <table id="list">
+        <tr>
+          <th><p>번호</p></th>
+          <th><p>문항</p></th>
+          <th><p>작성답안</p></th>
+          <th><p>채점결과</p></th>
+        </tr>
+        <tr>
+          <td><p id="number1"></p></td>
+          <td><p id="quest1"></p></td>
+          <td><p id="response1"></p></td>
+          <td><p id="score1"></p></td>
+        </tr>
+        <tr>
+          <td><p id="number2"></p></td>
+          <td><p id="quest2"></p></td>
+          <td><p id="response2"></p></td>
+          <td><p id="score2"></p></td>
+        </tr>
+        <tr>
+          <td><p id="number3"></p></td>
+          <td><p id="quest3"></p></td>
+          <td><p id="response3"></p></td>
+          <td><p id="score3"></p></td>
+        </tr>
+        <tr>
+          <td><p id="number4"></p></td>
+          <td><p id="quest4"></p></td>
+          <td><p id="response4"></p></td>
+          <td><p id="score4"></p></td>
+        </tr>
+        <tr>
+          <td><p id="number5"></p></td>
+          <td><p id="quest5"></p></td>
+          <td><p id="response5"></p></td>
+          <td><p id="score5"></p></td>
+        </tr>
+      </table>
+    </div>
+    <img src="https://icon-library.net/images/triangle-icon-png/triangle-icon-png-19.jpg" width="50px" height="50px" onclick=numberDown()>
+    <img src="https://icon-library.net/images/triangle-icon/triangle-icon-11.jpg" width="50px" height="50px" onclick=numberUp()><br>
+    <p id="score">총점 : </p>
+    <a href="testDetail.html">뒤로가기</a>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+  <script>
+    function TestResult(quest, response, score){
+      this.quest = quest;
+      this.response = response;
+      this.score = score;
+    }
+
+    result = new Array();
+    result[0] = new TestResult("question1", "response1", 10);//테스트용 데이터 삭제해도 무방
+    result[1] = new TestResult("question2", "response2", 5);
+    result[2] = new TestResult("question3", "response3", 10);
+    result[3] = new TestResult("question4", "response4", 10);
+    result[4] = new TestResult("question5", "response5", 10);
+    result[5] = new TestResult("question6", "response6", 15);
+    result[6] = new TestResult("question7", "response7", 15);
+    result[7] = new TestResult("question8", "response8", 15);//여기까지 테스트용 데이터
+
+    var startIndex = 0;
+
+    function plotResult(index){
+      start = parseInt(index);
+      var sum = 0;
+      for(var i = 1; i<=5; i++){
+        if(i>result.length){//사용자 수가 5보다 적을 경우
+          toWrite = document.getElementById("number"+i);
+          toWrite.innerHTML = "<p>"+(i+start)+"</p>";
+          toWrite = document.getElementById("quest"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("response"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("score"+i);
+          toWrite.innerHTML = "<p> </p>";
+        } else {
+          toWrite = document.getElementById("number"+i);
+          toWrite.innerHTML = "<p>"+(i+start)+"</p>";
+          toWrite = document.getElementById("quest"+i);
+          toWrite.innerHTML = "<p>"+result[i-1+start].quest+"</p>";
+          toWrite = document.getElementById("response"+i);
+          toWrite.innerHTML = "<p>"+result[i-1+start].response+"</p>";
+          toWrite = document.getElementById("score"+i);
+          toWrite.innerHTML = "<p>"+result[i-1+start].score+"</p>";
+        }
+      }
+      for(var i = 0; i<result.length; i++){
+        sum+=result[i].score;
+      }
+      toWrite = document.getElementById("score");
+      toWrite.innerHTML = "<p>총점 : "+sum+"</p>";
+    }
+    function numberUp(){//사용자 정보 번호 1증가
+      if(startIndex<result.length-5){
+        startIndex++;
+        plotResult(startIndex);
+      }
+    }
+    function numberDown(){//사용자 정보 번호 1 감소
+      if(startIndex>0){
+        startIndex--;
+        plotResult(startIndex);
+      }
+    }
+    plotResult(0);
+  </script>
+</body>
+
+</html>

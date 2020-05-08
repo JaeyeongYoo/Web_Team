@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="SystemMain.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="user.html"> 이용자 정보 </a></li>
+      <li><a href="test.html"> 시험 정보 </a></li>
+    </ul>
+  </nav>
+  <section>
+    <legend>시험 정보</legend>
+    <div class="info1">
+      정렬 <select id="sortOption" onchange="sortValue()">
+        <option value="1">생성일</option>
+        <option value="2">응시기간</option>
+        <option value="3">평균</option>
+      </select>
+    </div>
+    <div class="info2">
+      <select id="searchOption">
+        <option value="1">시험명</option>
+        <option value="2">생성자명</option>
+      </select>
+      <input type="text" id="search" placeholder="검색어를 입력하세요">
+      <button onclick="searchValue()">검색</button>
+    </div>
+    <div align="center">
+      <table id="tuinfo">
+        <tr>
+          <th>번호</th>
+          <th>시험명</th>
+          <th>생성자명</th>
+          <th>응시시간</th>
+          <th>생성일</th>
+          <th>응시기간</th>
+          <th>응시정보</th>
+          <th>평균</th>
+          <th>상세보기</th>
+          <th>삭제</th>
+        </tr>
+        <tr>
+          <td><p id="num1"></p></td>
+          <td><p id="testName1"> </p> </td>
+          <td><p id="crName1"></p> </td>
+          <td><p id="time1"></p> </td>
+          <td><p id="crDate1"></p></td>
+          <td><p id="examDate1"></p> </td>
+          <td><p id="data1"></p> </td>
+          <td><p id="average1"></p> </td>
+          <td><a href="testDetail.html">상세 보기</a></td>
+          <td><img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteTest(0)><td>
+        </tr>
+        <tr>
+          <td><p id="num2"></p></td>
+          <td><p id="testName2"> </p> </td>
+          <td><p id="crName2"></p> </td>
+          <td><p id="time2"></p> </td>
+          <td><p id="crDate2"></p></td>
+          <td><p id="examDate2"></p> </td>
+          <td><p id="data2"></p> </td>
+          <td><p id="average2"></p> </td>
+          <td><a href="testDetail.html">상세 보기</a></td>
+          <td><img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteTest(1)><td>
+        </tr>
+        <tr>
+          <td><p id="num3"></p></td>
+          <td><p id="testName3"> </p> </td>
+          <td><p id="crName3"></p> </td>
+          <td><p id="time3"></p> </td>
+          <td><p id="crDate3"></p></td>
+          <td><p id="examDate3"></p> </td>
+          <td><p id="data3"></p> </td>
+          <td><p id="average3"></p> </td>
+          <td><a href="testDetail.html">상세 보기</a></td>
+          <td><img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteTest(2)></td>
+        </tr>
+        <tr>
+          <td><p id="num4"></p></td>
+          <td><p id="testName4"> </p> </td>
+          <td><p id="crName4"></p> </td>
+          <td><p id="time4"></p> </td>
+          <td><p id="crDate4"></p></td>
+          <td><p id="examDate4"></p> </td>
+          <td><p id="data4"></p> </td>
+          <td><p id="average4"></p> </td>
+          <td><a href="testDetail.html">상세 보기</a></td>
+          <td><img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteTest(3)></td>
+        </tr>
+        <tr>
+          <td><p id="num5"></p></td>
+          <td><p id="testName5"> </p> </td>
+          <td><p id="crName5"></p> </td>
+          <td><p id="time5"></p> </td>
+          <td><p id="crDate5"></p></td>
+          <td><p id="examDate5"></p> </td>
+          <td><p id="data5"></p> </td>
+          <td><p id="average5"></p> </td>
+          <td><a href="testDetail.html">상세 보기</a></td>
+          <td><img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteTest(4)></td>
+        </tr>
+      </table>
+    </div>
+    <img src="https://icon-library.net/images/triangle-icon-png/triangle-icon-png-19.jpg" width="50px" height="50px" onclick=numberDown()>
+    <img src="https://icon-library.net/images/triangle-icon/triangle-icon-11.jpg" width="50px" height="50px" onclick=numberUp()>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+  <script>
+    var startIndex = 0;
+    var max = 11;
+    var detailIndex;
+    function Test(testName, crName, time, crDate, examDate, student, average){//시험 객체
+      this.testName = testName;//시험명
+      this.crName = crName;//작성자명
+      this.time = time;//응시시간
+      this.crDate = crDate;//생성일
+      this.examDate = examDate;//응시기간
+      this.student = student;//응시자수
+      this.average = average;//평균
+    }
+    var testList = new Array();//테스트 데이터 삭제해도 무방
+    testList[0] = new Test("test1", "Kim", 2, "2019-11-28", "2019-12-07", 8, 77.2);
+    testList[1] = new Test("test2", "Kim", 3, "2019-11-26", "2019-12-21", 2, 62.5);
+    testList[2] = new Test("test3", "Josh", 1, "2019-11-25", "2019-12-12", 5, 91.0);
+    testList[3] = new Test("test4", "Kim", 1, "2019-12-01", "2019-12-24", 1, 51.0);
+    testList[4] = new Test("test5", "Josh", 2, "2019-11-22", "2019-12-10", 6, 44.2);
+    testList[5] = new Test("test6", "Josh", 3, "2019-11-20","2019-11-28", 9, 67.3);
+    testList[6] = new Test("test7", "Kim", 2, "2019-12-03","2020-01-01", 1, 81);//여기까지 테스트용
+
+    function plotTestData(start){//시험 정보 표시하기
+      startnum = parseInt(start);
+      for(var i = 1; i<=5; i++){
+        if(i>testList.length){//시험 수가 5보다 적을 경우
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+startnum)+"</p>";
+          toWrite = document.getElementById("testName"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("crName"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("time"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("crDate"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("examDate"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("data"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("average"+i);
+          toWrite.innerHTML = "<p> </p>";
+        } else {
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+startnum)+"</p>";
+          toWrite = document.getElementById("testName"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].testName+"</p>";
+          toWrite = document.getElementById("crName"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].crName+"</p>";
+          toWrite = document.getElementById("time"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].time+"</p>";
+          toWrite = document.getElementById("crDate"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].crDate+"</p>";
+          toWrite = document.getElementById("examDate"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].examDate+"</p>";
+          toWrite = document.getElementById("data"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].student+"/"+max+"</p>";
+          toWrite = document.getElementById("average"+i);
+          toWrite.innerHTML = "<p>"+testList[i-1+startnum].average+"</p>";
+        }
+      }
+    }
+    function numberUp(){//사용자 정보 번호 1증가
+      if(startIndex<testList.length-5){
+        startIndex++;
+        plotTestData(startIndex);
+      }
+    }
+    function numberDown(){//사용자 정보 번호 1 감소
+      if(startIndex>0){
+        startIndex--;
+        plotTestData(startIndex);
+      }
+    }
+    function searchValue(){
+      var filter, input, i, j=0;
+      filter = document.getElementById("searchOption").value;
+      input = document.getElementById("search").value;
+      for(i = 1; i<=5; i++){
+        toWrite = document.getElementById("num"+i);
+        toWrite.innerHTML = "<p>"+(i+startnum)+"</p>";
+        toWrite = document.getElementById("testName"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("crName"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("time"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("crDate"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("examDate"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("data"+i);
+        toWrite.innerHTML = "<p> </p>";
+        toWrite = document.getElementById("average"+i);
+        toWrite.innerHTML = "<p> </p>";
+      }
+      if(filter == "1"){
+        for(i = 1; i<=5&&j<testList.length; j++){
+          if((testList[j].testName).indexOf(input)>-1){
+            toWrite = document.getElementById("testName"+i);
+            toWrite.innerHTML = "<p>"+testList[j].testName+"</p>";
+            toWrite = document.getElementById("crName"+i);
+            toWrite.innerHTML = "<p>"+testList[j].crName+"</p>";
+            toWrite = document.getElementById("time"+i);
+            toWrite.innerHTML = "<p>"+testList[j].time+"</p>";
+            toWrite = document.getElementById("crDate"+i);
+            toWrite.innerHTML = "<p>"+testList[j].crDate+"</p>";
+            toWrite = document.getElementById("examDate"+i);
+            toWrite.innerHTML = "<p>"+testList[j].examDate+"</p>";
+            toWrite = document.getElementById("data"+i);
+            toWrite.innerHTML = "<p>"+testlist[j].student+"/"+max+"</p>";
+            toWrite = document.getElementById("average"+i);
+            toWrite.innerHTML = "<p>"+testList[j].average+"</p>";
+            i++;
+          }
+        }
+      } else if(filter == "2"){
+        for(i = 1; i<=5&&j<testList.length; j++){
+          if((testList[j].crName).indexOf(input)>-1){
+            toWrite = document.getElementById("testName"+i);
+            toWrite.innerHTML = "<p>"+testList[j].testName+"</p>";
+            toWrite = document.getElementById("crName"+i);
+            toWrite.innerHTML = "<p>"+testList[j].crName+"</p>";
+            toWrite = document.getElementById("time"+i);
+            toWrite.innerHTML = "<p>"+testList[j].time+"</p>";
+            toWrite = document.getElementById("crDate"+i);
+            toWrite.innerHTML = "<p>"+testList[j].crDate+"</p>";
+            toWrite = document.getElementById("examDate"+i);
+            toWrite.innerHTML = "<p>"+testList[j].examDate+"</p>";
+            toWrite = document.getElementById("data"+i);
+            toWrite.innerHTML = "<p>"+testList[j].student+"/"+max+"</p>";
+            toWrite = document.getElementById("average"+i);
+            toWrite.innerHTML = "<p>"+testList[j].average+"</p>";
+            i++;
+          }
+        }
+      }
+    }
+    function sortValue(){//정렬
+      var sOption = document.getElementById("sortOption").value;
+      var sortOpt;
+      var i, j, key;
+      if(sOption == "1"){
+        for(i = 1; i<testList.length; i++){
+          key = testList[i];
+          for(j = i-1; j>=0 && testList[j].crDate>key.crDate; j--){
+            testList[j+1] = testList[j];
+          }
+          testList[j+1] = key;
+        }
+      }else if(sOption == "2"){
+        for(i = 1; i<testList.length; i++){
+          key = testList[i];
+          for(j = i-1; j>=0 && testList[j].examDate>key.examDate; j--){
+            testList[j+1] = testList[j];
+          }
+          testList[j+1] = key;
+        }
+      }else if(sOption == "3"){
+        for(i = 1; i<testList.length; i++){
+          key = testList[i];
+          for(j = i-1; j>=0 && testList[j].average>key.average; j--){
+            testList[j+1] = testList[j];
+          }
+          testList[j+1] = key;
+        }
+      }
+      startIndex = 0;
+      plotTestData(0)
+    }
+    function deleteTest(num){//시험 삭제
+      if(num>testList.length){
+        return;
+      }
+      var index = startIndex + parseInt(num);
+      testList.splice(index, 1);
+      if(index>testList.length-5&&startIndex>0){
+        startIndex--;
+      }
+      plotTestData(startIndex);
+    }
+    plotTestData(0);
+  </script>
+</body>
+
+</html>

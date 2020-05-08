@@ -1,0 +1,211 @@
+@font-face
+{
+ font-family: "Tint";
+ src:url(./font/210springR.eot)  format('embedded-opentype'),
+  url(./font/210springR.woff) format('woff'),
+  url(./font/210springR.ttf) format('truetype');
+}
+@font-face
+{
+ font-family: "Bernard";
+ src:url(./font/Bernard.eot) format('embedded-opentype'),
+  url(./font/Bernard.woff) format('woff'),
+  url(./font/Bernard.ttf) format('truetype');
+}
+@font-face
+{
+  font-family: "HoonSlim";
+  src:url(./font/HoonSlimskinnyL.eot) format('embedded-opentype'),
+   url(./font/HoonSlimskinnyL.woff) format('woff'),
+   url(./font/HoonSlimskinnyL.ttf) format('truetype');
+}
+@font-face
+{
+ font-family: "Spring";
+ src:url(./font/210springR.eot) format('embedded-opentype'),
+  url(./font/210springR.woff) format('woff'),
+  url(./font/210springR.ttf) format('truetype');
+}
+@font-face
+{
+ font-family: "Koverwatch";
+ src:url(./font/koverwatch.eot) format('embedded-opentype'),
+  url(./font/koverwatch.woff) format('woff'),
+  url(./font/koverwatch.ttf) format('truetype');
+}
+
+
+body{
+  text-align: center;
+  font-family: "Tint", monospace;
+  background-color: #FFFFFF;
+}
+header{
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  font-family: "Bernard", monospace;
+  font-size: 70px;
+  padding: 0px;
+  margin: 0px;
+  padding-top: 40px;
+  border-bottom: 10px solid #09331d;
+}
+a{
+  text-decoration: none;
+  color: #000000;
+}
+a:hover{
+  color: #fac60e;
+}
+div p, nav ul p{ font-size: 20px; padding: 3px; margin: 0px; }
+
+.information{
+    margin:30px;
+    padding:10px;
+  }
+  .info1, .info2{
+    display: inline-block;
+    height: 100px;
+    vertical-align: center;
+    line-height: 40px;
+    margin-top: 30px;
+  }
+  .info1{
+    text-align: right;
+    width: 150px;
+    font-size: 20px;
+  }
+  .info2{
+    text-align: left;
+    width: 300px;
+  }
+nav
+{
+  display: table-cell;
+  text-align: left;
+  width: 100px;
+  margin-top: 50px;
+  padding-right: 90px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+ul, li, ol
+{
+  list-style: none;
+  width: 100px;
+  padding: 0px;
+  margin-bottom: 7px;
+}
+nav ul li a { font-size:20px; }
+
+nav ul h1{
+  font-family:"Koverwatch", monospace;
+  font-size: 35px;
+  color: #09331d;
+  margin-bottom: 20px;
+}
+
+section
+{
+  width: 880px;
+  display: table-cell;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  align: center;
+}
+section h1, section legend
+{
+  font-size: 50px;
+  font-family: "Koverwatch", monospace;
+  margin-bottom: 10px;
+}
+section h2
+{
+  font-family: "Tint", monospace;
+  font-size: 50px;
+}
+section table
+{
+  min-width: 500px;
+  font-size: 22px;
+  width: 700px;
+  margin: 10px;
+  margin-top: -10px;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+section table tr td, section table tr th
+{
+  width: 80px;
+  height: 35px;
+  text-align: center;
+  padding: 5px;
+  font-size: 20px;
+}
+section table tr th
+{
+  font-size: 30px;
+}
+
+#left{ text-align: right; width: 150px; }
+#right{ text-align: left; width: 150px; }
+
+#userdetail{
+  padding: 10px;
+  margin: 10px;
+  align: center;
+  width: 500px;
+  height: 300px;
+  border: 4px solid #09331d;
+  opacity: 0;
+}
+#input {
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  font-size: 16px; /* Increase font-size */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+#ox {
+  border-bottom: 3px solid #fac60e;
+}
+
+#createtest {
+  text-align: left;
+  line-height: 35px;
+  padding: 10px;
+  margin: 10px;
+
+}
+#test tr th
+{
+  padding-top: 30px;
+}
+#timer {
+  font-family: "Hoonslim", monospace;
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  color: #fac60e;
+  position: sticky;
+  top: 30px;
+  width: 150px;
+  height: 40px;
+}
+#tuinfo {
+  width: 900px;
+  padding: 0px;
+  margin: 0px;
+}
+#tuinfo tr th { font-size: 27px; }
+#tuinfo tr td{
+  margin: 0px;
+  padding: 0px;
+}
+
+#score{
+  font-size: 40px;
+}

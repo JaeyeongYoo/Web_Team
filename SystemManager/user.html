@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+</head>
+<body>
+  <header>
+    <a href="SystemMain.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="user.html"> 이용자 정보 </a></li>
+      <li><a href="test.html"> 시험 정보 </a></li>
+    </ul>
+  </nav>
+  <section>
+    <legend style="padding: 10px; margin: 10px">이용자 정보</legend>
+    <div align="center">
+      <table id="tuinfo">
+        <tr>
+          <th>번호</th>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>가입일시</th>
+          <th>등급정보</th>
+          <th>상세 보기</th>
+        </tr>
+        <tr>
+          <td><p id="num1"></p></td>
+          <td><p id="id1"> </p> </td>
+          <td><p id="name1"></p> </td>
+          <td><p id="date1"></p> </td>
+          <td><p id="level1"></p> </td>
+          <td><img src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" width="50px" height="50px" onclick=detail(0)></td>
+        </tr>
+        <tr>
+          <td><p id="num2"></p></td>
+          <td><p id="id2"> </p> </td>
+          <td><p id="name2"></p> </td>
+          <td><p id="date2"></p> </td>
+          <td><p id="level2"></p> </td>
+          <td><img src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" width="50px" height="50px" onclick=detail(1)></td>
+        </tr>
+        <tr>
+          <td><p id="num3"></p></td>
+          <td><p id="id3"> </p> </td>
+          <td><p id="name3"></p> </td>
+          <td><p id="date3"></p> </td>
+          <td><p id="level3"></p> </td>
+          <td><img src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" width="50px" height="50px" onclick=detail(2)></td>
+        </tr>
+        <tr>
+          <td><p id="num4"></p></td>
+          <td><p id="id4"> </p> </td>
+          <td><p id="name4"></p> </td>
+          <td><p id="date4"></p> </td>
+          <td><p id="level4"></p> </td>
+          <td><img src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" width="50px" height="50px" onclick=detail(3)></td>
+        </tr>
+        <tr>
+          <td><p id="num5"></p></td>
+          <td><p id="id5"> </p> </td>
+          <td><p id="name5"></p> </td>
+          <td><p id="date5"></p> </td>
+          <td><p id="level5"></p> </td>
+          <td><img src="http://pluspng.com/img-png/free-png-plus-sign-plus-icon-512.png" width="50px" height="50px" onclick=detail(4)></td>
+        </tr>
+      </table>
+    </div>
+    <img src="https://icon-library.net/images/triangle-icon-png/triangle-icon-png-19.jpg" width="50px" height="50px" onclick=numberDown()>
+    <img src="https://icon-library.net/images/triangle-icon/triangle-icon-11.jpg" width="50px" height="50px" onclick=numberUp()>
+
+    <div id="userdetail">
+      <legend style="font-size: 30px">상세 정보</legend>
+      <p id="id">아이디 : </p>
+      <p id="name">이름 : </p>
+      <p id="assignDate">가입일시 : </p>
+      <p id="level">등급 : </p>
+      <p id="loginDate">최종로그인일시 : </p>
+      <p id="acceptDate">승인일시 : </p>
+      <form>
+        <input type="button" value="등급변경" onclick="changeLevel()">
+      </form>
+      <img src="https://cdn.imgbin.com/14/7/4/imgbin-button-delete-key-icon-warning-icons-BMFJz0iVMUhDBx61ydMgL96RG.jpg" width="50px" height="50px" onclick=deleteData()>
+    </div>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+  <script>
+    function User(id, name, assignDate, level, loginDate, acceptDate){//유저 객체
+      this.id = id;
+      this.name = name;
+      this.assignDate = assignDate;
+      this.level = level;
+      this.loginDate = loginDate;
+      this.acceptDate = acceptDate;
+    }
+    var startIndex = 0;//표시되는 인덱스의 시작점
+    var toWrite;
+    var userList = new Array();//유저 객체 배열
+    userList[0] = new User("ojw24", "오재원", "2018-01-12", 0, "2019-09-17", "undefined");//테스트용 데이터 지워도 무방
+    userList[1] = new User("kunwoo90", "박건우", "2019-09-28", 0, "2019-11-12", "undefined");
+    userList[2] = new User("taehyeong4991", "김태형", "2016-01-27", 1, "2018-01-12", "2016-02-01");
+    userList[3] = new User("jlboomer25", "린드블럼", "2012-11-20", 1, "2019-02-28", "2013-02-01");
+    userList[4] = new User("youngha", "이영하", "2017-02-26", 0, "2017-12-28", "undefined");
+    userList[5] = new User("ejrwn19", "함덕주", "2014-03-03", 0, "2019-07-11", "undefined");
+    userList[6] = new User("kyoungmin1623", "허경민", "2009-07-18", 0, "2018-09-13", "undefined");
+    userList[7] = new User("wonjun28", "장원준", "2014-11-14", 0, "2019-11-13", "undefined");
+    userList[8] = new User("suwank", "김수완", "2012-12-28", 0, "2014-04-14", "undefined");
+    userList[9] = new User("yooheekwan", "유희관", "2015-04-14", 0, "2019-12-04", "undefined");
+    userList[10] = new User("kang22", "강동연", "2019-11-29", 0, "2016-03-19", "undefined");//여기까지 테스트용 데이터
+
+    function plotUserData(start){//사용자 정보 표시하기
+      startnum = parseInt(start);
+      for(var i = 1; i<=5; i++){
+        if(i>userList.length){//사용자 수가 5보다 적을 경우
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+startnum)+"</p>";
+          toWrite = document.getElementById("id"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("name"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("date"+i);
+          toWrite.innerHTML = "<p> </p>";
+          toWrite = document.getElementById("level"+i);
+          toWrite.innerHTML = "<p> </p>";
+        } else {
+          toWrite = document.getElementById("num"+i);
+          toWrite.innerHTML = "<p>"+(i+startnum)+"</p>";
+          toWrite = document.getElementById("id"+i);
+          toWrite.innerHTML = "<p>"+userList[i-1+startnum].id+"</p>";
+          toWrite = document.getElementById("name"+i);
+          toWrite.innerHTML = "<p>"+userList[i-1+startnum].name+"</p>";
+          toWrite = document.getElementById("date"+i);
+          toWrite.innerHTML = "<p>"+userList[i-1+startnum].assignDate+"</p>";
+          toWrite = document.getElementById("level"+i);
+          if(userList[i-1+startnum].level){
+            toWrite.innerHTML = "<p>교수자</p>";
+          } else {
+            toWrite.innerHTML = "<p>학습자</p>";
+          }
+        }
+      }
+    }
+    function numberUp(){//사용자 정보 번호 1증가
+      if(startIndex<userList.length-5){
+        startIndex++;
+        plotUserData(startIndex);
+      }
+    }
+    function numberDown(){//사용자 정보 번호 1 감소
+      if(startIndex>0){
+        startIndex--;
+        plotUserData(startIndex);
+      }
+    }
+    function detail(num){//상세 정보 표시
+      var index = startIndex+parseInt(num);
+      detailIndex = index;
+      var detailss = document.getElementById("userdetail");
+      if(index>userList.length-1){
+        detailss.style.opacity = 0;
+      }else{
+        detailss.style.opacity = 1;
+        detailss = document.getElementById("id");
+        detailss.innerHTML = "<p>아이디 : "+userList[index].id+"</p>";
+        detailss = document.getElementById("name");
+        detailss.innerHTML = "<p>이름 : "+userList[index].name+"</p>";
+        detailss = document.getElementById("assignDate");
+        detailss.innerHTML = "<p>가입일시 : "+userList[index].assignDate+"</p>";
+        detailss = document.getElementById("level");
+        if(userList[index].level){
+          detailss.innerHTML = "<p>등급 : 교수자</p>";
+        } else {
+          detailss.innerHTML = "<p>등급 : 학습자</p>";
+        }
+        detailss = document.getElementById("loginDate");
+        detailss.innerHTML = "<p>최종로그인일시 : "+userList[index].loginDate+"</p>";
+        detailss = document.getElementById("acceptDate");
+        if(userList[index].level){
+          detailss.innerHTML = "<p>승인일시 : "+userList[index].acceptDate+"</p>";
+        } else {
+          detailss.innerHTML = "<p></p>";
+        }
+      }
+    }
+    function deleteData(){//상세로 보는 사용자 정보 삭제
+      var detailss = document.getElementById("userdetail");
+      detailss.style.opacity = 0;
+      userList.splice(detailIndex, 1);
+      if(detailIndex>userList.length-5&&startIndex>0){
+        startIndex--;
+      }
+      plotUserData(startIndex);
+    }
+    function changeLevel(){
+      date = new Date();
+      if(userList[detailIndex].level == 1){
+        userList[detailIndex].level = 0;
+      } else{
+        userList[detailIndex].level = 1;
+        userList[detailIndex].acceptDate = ""+date.toLocaleString();
+      }
+      plotUserData(startIndex);
+      detail(""+(detailIndex-startIndex));
+    }
+
+    plotUserData(0);
+  </script>
+</body>
+
+</html>

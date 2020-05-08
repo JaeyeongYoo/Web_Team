@@ -1,0 +1,67 @@
+<?php
+  session_start();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Online Test</title>
+  <link rel="stylesheet" type="text/css" href="./templatedesign.css">
+</head>
+<body>
+  <script>
+  function check_id()
+  {
+    var userid = document.getElementById("uid").value;
+    if(userid){
+      url="check.php?userid="+userid;
+      //database껴있는 페이지에 GET방식으로 아이디를 붙이고 아이디 중복확인하러 가는 곳
+      window.open(url,"chkid","width=300, height=100");
+    }else{
+      alert("아이디를 입력하세요");
+    }
+  }
+  </script>
+  <header>
+    <a href="firstpage.html">SKKU Online Test</a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li>You can use after login</li>
+    </ul>
+  </nav>
+  <section>
+    <br><br>
+    <div style="font-size:60px">-회원 가입-</div>
+    <p>정보를 입력하세요.</p>
+    <hr style="border: 3px double #fac60e">
+    <form action="signup_create.php" method="POST">
+      <div class="infomation">
+        <div class="info1">
+          아이디:<br>
+          비밀번호:<br>
+          비밀번호 재입력:<br>
+          이름:<br>
+          등급:<br>
+        </div>
+        <div class="info2">
+          <input type="text" name="userid" id="uid" placeholder="ID">&nbsp;<input type="button" value="중복 확인" onClick="check_id()" class=m_box><br>
+          <input type="password" name="pw" placeholder="password"><br>
+          <input type="password" name="pw" placeholder="Re-password"><br>
+          <input type="text" name="name" placeholder="name"><br>
+          <input type="radio" name="usertype" value="professor">교수자
+          <input type="radio" name="usertype" value="student">학습자
+          <br>
+        </div>
+      </div>
+      <br>
+      <input type="hidden" name="checked_id" value="">
+      <div>
+        <input type="submit" value="가입하기"> <input type="reset" value="다시쓰기">
+        <input type="button" name="cancel" value="취소" onclick="history.back(-1)">
+      </div>
+    </form>
+  </section>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Online Test</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../templatedesign.css">
+
+</head>
+<body>
+  <header>
+    <a href="./testlist.html">
+      SKKU Online Test
+    </a>
+  </header>
+  <nav>
+    <ul>
+      <h1>MENU</h1>
+      <li><a href="./tablelist.html"> 시험 목록 </a></li>
+      <li><a href="./testdetail.html"> 시험 상세</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Webprogramming Quiz</h2>
+    <div id="timer"></div>
+      <div align="center">
+        예시로 든 것, 데이터베이스에서 가져와야함
+        <form action="db" type="POST">
+          <table id="test">
+            <tr>
+              <th id="left">1번</th> <!--시험명-->
+              <th id="right">다음 보기 중 알맞은 것을 고르시오.</th>
+            </tr>
+
+            <tr>
+              <td id="left"><input type="radio" name="q1" value="1">1.</td>
+              <td id="right">나는 성균관대학교 학생이다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q1" value="2">2.</td>
+              <td id="right">웹프로그래밍 수분반이다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q1" value="3">3.</td>
+              <td id="right">수업시간에 PHP를 가르쳐주었다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q1" value="4">4.</td>
+              <td id="right">django를 가르쳐주었다.</td>
+            </tr>
+
+            <tr>
+              <th id="left">2번</th> <!--시험명-->
+              <th id="right">다음 중 알맞지 않은 것은?</th>
+            </tr>
+
+            <tr>
+              <td id="left"><input type="radio" name="q2" value="1">1.</td>
+              <td id="right">종강이 15일 남았다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q2" value="2">2.</td>
+              <td id="right">기말고사 6개 본다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q2" value="3">3.</td>
+              <td id="right">컴공은 과제가 많다.</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q2" value="4">4.</td>
+              <td id="right">해야할 게 너무 많다.</td>
+            </tr>
+
+            <tr>
+              <th id="left">3번</th> <!--시험명-->
+              <th id="right">조금만 더 힘냅시다</th>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q3" value="1">1.</td>
+              <td id="right">흑흑</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q3" value="2">2.</td>
+              <td id="right">엉엉</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q3" value="3">3.</td>
+              <td id="right">꺼이꺼이</td>
+            </tr>
+            <tr>
+              <td id="left"><input type="radio" name="q1" value="4">4.</td>
+              <td id="right">종강주세요!</td>
+            </tr>
+
+            <tr>
+              <th id="left">4번</th> <!--시험명-->
+              <th id="right">이것은 주관식 문제입니다</th>
+            </tr>
+
+            <tr>
+              <td id="left"></td>
+              <td id="right"><textarea name="q4" rows="10" cols="50"></textarea></td>
+            </tr>
+
+        </table>
+        <input type="submit" value="제출하기">
+        <input type="reset" value="다시풀기">
+      </form>
+    </div>
+  </section>
+
+  <footer> Copyright (c) 2019 Webprogramming </footer>
+
+  <script>
+    var SetTime = 100;		// 최초 설정 시간(기본 : 60초)
+	  function msg_time() {	// 1초씩 카운트
+      min = Math.floor(SetTime/60) + "분";
+  		sec = Math.floor(SetTime) - 60*Math.floor(SetTime/60) + "초";	// 남은 시간 계산
+  		var msg = "<h3>남은 시험시간 <font color='#09331d'>" + min + " " + sec + "</font></h3>";
+  		document.all.timer.innerHTML = msg;		// div 위치에 타이머를 보여줌
+  		SetTime--;					// 1초씩 감소
+  		if (SetTime < 0) {			// 시간이 종료
+  			clearInterval(tid);		// 타이머 해제
+  			alert("시험이 종료되었습니다");
+        location.href="testlist.html";
+  		}
+	   }
+    window.onload = function TimerStart(){ tid=setInterval('msg_time()',1000) };
+  </script>
+
+</body>
+
+</html>
